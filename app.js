@@ -18,7 +18,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.get("/", (req, res) => {
     res.status(200).json({
-        message: "Welcome to api tiketonline by Prof. Dr. Alkhairunas Riyuska., S.Si., M.Kom",
+        message: "Selamat Datang to api tiketonline by Prof. Dr. Alkhairunas Riyuska., S.Si., M.Kom",
     });
 });
 
