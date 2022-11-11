@@ -2,6 +2,7 @@ const Categories = require("./model");
 const {
     getAllCategories,
     createCategories,
+    getOneCategories,
 } = require("../../../services/mongoose/categories");
 
 // Untuk create**************************************************************
@@ -35,13 +36,13 @@ const index = async(req, res, next) => {
 // Find Single***************************************************************
 const find = async(req, res, next) => {
     try {
-        const { id } = req.params;
+        // const { id } = req.params;
 
-        const hasil = await Categories.findOne({ _id: id });
-
-        if (!hasil) {
-            return res.status(404).json({ message: "Id Categories tidak ditemukan" });
-        }
+        const hasil = await getOneCategories(req);
+        // data lama*****
+        // if (!hasil) {
+        //     return res.status(404).json({ message: "Id Categories tidak ditemukan" });
+        // }
 
         res.status(200).json({
             data: hasil,

@@ -1,6 +1,6 @@
 // import model categories
 const Categories = require("../../api/v1/categories/model");
-const { BadRequestError } = require("../../errors");
+const { BadRequestError, NotFoundError } = require("../../errors");
 
 // import custom error not found dan bad request
 //const { NotFoundError, BadRequestError } = require("../../errors");
@@ -25,4 +25,14 @@ const createCategories = async(req) => {
     return result;
 };
 
-module.exports = { getAllCategories, createCategories };
+const getOneCategories = async(req) => {
+    const { id } = req.params;
+
+    const result = await Categories.findOne({ _id: id });
+
+    if (!result) throw new NotFoundError(`Tidak ada Kategori dengan id :  ${id}`);
+
+    return result;
+};
+
+module.exports = { getAllCategories, createCategories, getOneCategories };
