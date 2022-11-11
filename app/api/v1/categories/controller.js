@@ -3,6 +3,7 @@ const {
     getAllCategories,
     createCategories,
     getOneCategories,
+    updateCategories,
 } = require("../../../services/mongoose/categories");
 
 // Untuk create**************************************************************
@@ -57,12 +58,10 @@ const find = async(req, res, next) => {
 // Update ***************************************************************
 const update = async(req, res, next) => {
     try {
-        const { id } = req.params;
-        const { name } = req.body;
+        // const { id } = req.params;
+        // const { name } = req.body;
 
-        const result = await Categories.findOneAndUpdate({
-            _id: id,
-        }, { name }, { new: true, runValidators: true });
+        const result = await updateCategories(req);
 
         res.status(200).json({
             data: result,
