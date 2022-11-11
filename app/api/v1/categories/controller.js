@@ -1,11 +1,14 @@
 const Categories = require("./model");
+const {
+    getAllCategories,
+    createCategories,
+} = require("../../../services/mongoose/categories");
 
 // Untuk create**************************************************************
 const create = async(req, res, next) => {
     try {
-        const { name } = req.body;
+        const result = await createCategories(req);
 
-        const result = await Categories.create({ name });
         res.status(201).json({
             data: result,
         });
@@ -18,7 +21,7 @@ const create = async(req, res, next) => {
 // Untuk Get All Aplikasi*****************************************************
 const index = async(req, res, next) => {
     try {
-        const result = await Categories.find().select("_id name"); // menampilkan id dan name saja
+        const result = await getAllCategories(); // menampilkan id dan name saja
         res.status(200).json({
             data: result,
         });
