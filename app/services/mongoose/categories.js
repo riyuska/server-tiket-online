@@ -56,9 +56,24 @@ const updateCategories = async(req) => {
     return result;
 };
 
+const deleteCategories = async(req) => {
+    const { id } = req.params;
+
+    const result = await Categories.findOne({
+        _id: id,
+    });
+
+    if (!result) throw new NotFoundError(`Tidak ada Kategori dengan id :  ${id}`);
+
+    await result.remove();
+
+    return result;
+};
+
 module.exports = {
     getAllCategories,
     createCategories,
     getOneCategories,
     updateCategories,
+    deleteCategories,
 };

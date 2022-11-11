@@ -4,6 +4,7 @@ const {
     createCategories,
     getOneCategories,
     updateCategories,
+    deleteCategories,
 } = require("../../../services/mongoose/categories");
 
 // Untuk create**************************************************************
@@ -75,8 +76,8 @@ const update = async(req, res, next) => {
 // Delete **************************************************************************
 const destroy = async(req, res, next) => {
     try {
-        const { id } = req.params;
-        const result = await Categories.findByIdAndRemove(id);
+        // const { id } = req.params;
+        const result = await deleteCategories(req);
         res.status(200).json({
             data: result,
         });
