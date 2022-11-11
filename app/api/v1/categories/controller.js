@@ -1,4 +1,6 @@
-const Categories = require("./model");
+const { StatusCodes } = require("http-status-codes");
+// Tidak menggunakan model karena semua sudah ada diservice
+// const Categories = require("./model");
 const {
     getAllCategories,
     createCategories,
@@ -12,7 +14,7 @@ const create = async(req, res, next) => {
     try {
         const result = await createCategories(req);
 
-        res.status(201).json({
+        res.status(StatusCodes.CREATED).json({
             data: result,
         });
     } catch (err) {
@@ -25,7 +27,7 @@ const create = async(req, res, next) => {
 const index = async(req, res, next) => {
     try {
         const result = await getAllCategories(); // menampilkan id dan name saja
-        res.status(200).json({
+        res.status(StatusCodes.OK).json({
             data: result,
         });
     } catch (err) {
@@ -46,7 +48,7 @@ const find = async(req, res, next) => {
         //     return res.status(404).json({ message: "Id Categories tidak ditemukan" });
         // }
 
-        res.status(200).json({
+        res.status(StatusCodes.OK).json({
             data: hasil,
         });
     } catch (err) {
@@ -64,7 +66,7 @@ const update = async(req, res, next) => {
 
         const result = await updateCategories(req);
 
-        res.status(200).json({
+        res.status(StatusCodes.OK).json({
             data: result,
         });
     } catch (err) {
@@ -78,7 +80,7 @@ const destroy = async(req, res, next) => {
     try {
         // const { id } = req.params;
         const result = await deleteCategories(req);
-        res.status(200).json({
+        res.status(StatusCodes.OK).json({
             data: result,
         });
     } catch (err) {
